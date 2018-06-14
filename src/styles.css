@@ -1,0 +1,48 @@
+/* Add application styles & imports to this file! */
+.file-progress{
+    margin-right: 5px;
+    position: absolute;
+    top: 4px;
+}
+
+.file-icon {
+  visibility: hidden;
+}
+
+html,
+body {
+  margin: 0px 20px;
+  padding: 0;
+  height: 100%;
+}
+
+.fa-folder {
+  color: #73C8F1;
+}
+
+.fa-file-pdf-o {
+  color: red;
+}
+
+.fa-file-excel-o {
+  color: green;
+}
+
+.fa-file-audio-o {
+  color: blue;
+}
+
+.filename {
+  padding: 5px;
+  color: black;
+  font-size: 12px;
+}
+
+.popup-editor {
+  height:200px;
+  width: 450px;
+}
+
+input[type=text] {
+  padding:0;
+}

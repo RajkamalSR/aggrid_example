@@ -1,0 +1,66 @@
+<div style="height: 80%; padding-top: 120px; box-sizing: border-box;">
+	<ag-grid-angular #agGrid 
+    style="width: 100%; height: 100%;" 
+    id="myGrid" 
+    class="ag-theme-balham" 
+    [columnDefs]="columnDefs"
+    [frameworkComponents]="frameworkComponents"
+    [rowSelection]="'single'"
+    [rowDeselection]="true" 
+    [rowData]="rowData"
+    [rowHeight]="25" 
+    [components]="components" 
+    [treeData]="true" 
+    [animateRows]="true"
+    [enableFilter]="true" 
+    [enableSorting]="true" 
+    [enableColResize]="true" 
+    [toolPanelSuppressSideButtons]="true"
+    [groupDefaultExpanded]="groupDefaultExpanded" 
+    [getDataPath]="getDataPath"
+    [autoGroupColumnDef]="autoGroupColumnDef"
+    [aggFuncs]="aggFuncs"
+    (gridReady)="onGridReady($event)"
+    (cellEditingStopped)="onCellEditingStopped($event)"
+    (cellEditingStarted)="onCellEditingStarted($event)"
+    (selectionChanged)="onSelectionChanged()"
+   ></ag-grid-angular>
+</div>
+<div class="container">
+  <file-uploader 
+    [files]="files"
+    (onRemoveItem)="onRemoveItem($event)"
+    (onCompleteItem)="onCompleteItem($event)"
+  ></file-uploader>
+</div>
+<div style="position: absolute; padding-top:20px;top: 0px; left: 40px;">
+  <h1>Files and Attachment R&D demo...</h1>
+	<button 
+    class="button button-primary"
+    [attr.disabled]="inputDisable||allDisable ? '' : null" 
+    (click)="addNewGroup(1,'New Folder')"
+  >Add New Folder</button>
+	<button 
+    class="button button-primary" 
+    [attr.disabled]="inputDisable||allDisable ? '' : null" 
+    (click)="fileInput.click()"
+  >Add New File</button>
+  <button 
+    class="button button-primary"
+    [attr.disabled]="allDisable||!files.length ? '' : null" 
+    (click)="uploadStart()"
+  >Upload Files</button>
+  <input 
+    #fileInput
+    type="file"
+    multiple
+    [hidden]="true"
+    (change)="addToQueue(fileInput)"
+  />
+	<button 
+    class="button button-danger" 
+    [attr.disabled]="allDisable ? '' : null" 
+    (click)="removeSelected()"
+  >Remove Selected</button>
+</div>
+

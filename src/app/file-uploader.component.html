@@ -1,0 +1,23 @@
+<div class="row" *ngIf="progress?.count">
+	<div class="col-md-9">
+    <br>
+		<h3 *ngIf="progress?.count">{{progress?.count}} file{{progress?.count>1?'s':''}} uploading...({{progress?.upload}}%)</h3>
+		<table class="table-headed table-striped">
+			<tbody>
+				<tr *ngFor="let item of queue | async">
+					<td>{{ item?.file?.dummy_name }}</td>
+					<td class="text-right">{{getFileSize(item?.file?.size)}}</td>
+					<td *ngIf="!item.isError()">{{ item.progress + ' %' }}</td>
+					<td *ngIf="item.inProgress()" id="graph" class="file_progress" [attr.data-percent]="item.progress"></td>
+					<td *ngIf="item.isSuccess()"><i class="fa fa-check"></i></td>
+					<td *ngIf="item.isError()">Error</td>
+					<td class="text-right">
+						<a tooltip="Cancel upload" (click)="removeItem(item)" *ngIf="item.inProgress()">
+							<i class="fa fa-times-circle"></i>
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+</div>
